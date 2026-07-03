@@ -217,11 +217,11 @@ function initLeadModal() {
       locked.hidden = false;
       selectField.style.display = "none";
       lockedName.textContent = program + (level ? " · " + level : "");
-      subEl.innerHTML = `Estás por inscribirte a <b>${program}</b>. Completa tus datos para continuar.`;
+      subEl.innerHTML = `Estás por inscribirte a <b>${program}</b>. Completa tus datos y te guiamos desde aquí.`;
     } else {
       locked.hidden = true;
       selectField.style.display = "";
-      subEl.textContent = "Déjanos tus datos y elige tu programa para continuar.";
+      subEl.textContent = "Déjanos tus datos y te guiamos desde aquí.";
     }
     updatePay();
   }

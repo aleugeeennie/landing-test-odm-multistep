@@ -546,6 +546,10 @@ body.modal-open{overflow:hidden}
 .prog-locked{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:var(--r-sm);background:linear-gradient(150deg,var(--odm-purple),var(--odm-purple-dark));color:#fff;margin-bottom:18px}
 .prog-locked .pl-label{font-size:.66rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 .prog-locked .pl-value{font-size:1.02rem;font-weight:800;line-height:1.25}
+.pay-gift{margin-bottom:18px}
+.pay-gift h4{font-size:1.02rem;color:var(--odm-purple);margin-bottom:5px;line-height:1.25}
+.pay-gift p{font-size:.9rem;color:var(--odm-text-soft);line-height:1.5;text-wrap:pretty}
+.pay-gift b{color:var(--odm-orange-dark)}
 .pay-summary{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;border-radius:var(--r-md);background:var(--odm-gray-50);border:1px solid rgba(69,18,66,.08);margin-bottom:18px}
 .pay-summary > div{display:flex;flex-direction:column;gap:3px;min-width:0}
 .pay-summary > div > span:first-child{font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--odm-text-soft)}
