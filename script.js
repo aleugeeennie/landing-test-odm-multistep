@@ -17,19 +17,21 @@ const ODM = {
   //   "lead_abandonado_pago"  -> llegó al Paso 2 y cerró/salió sin pagar
   //   "pago_completado"       -> envió el Paso 2 (pago maqueta)
   // Si se deja vacío, los eventos solo se registran en consola (modo demo).
-  webhook: "",
+  webhook: "https://hooks.zapier.com/hooks/catch/27913204/4u2mppe/",
 
   // URL real de Calendly (solo se usa en gracias.html si aplica).
   calendly: "https://calendly.com/odm-diagnostico/30min",
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  initUTMs();        // captura y persiste utm_* antes de que se abra cualquier form
   initLeadModal();   // primero: expone window.ODMopenLead para el fallback de WhatsApp
   initWhatsApp();
   initNavbar();
   initMobileMenu();
   initMarquee();
   initTabs();
+  initProgMore();
   initFAQ();
   initReveal();
   initThanks();
@@ -52,6 +54,39 @@ function postLead(event, data, beacon) {
     body: payload,
     keepalive: true,
   }).catch(() => {});
+}
+
+/* ---------- UTMs: lee de la URL, persiste en localStorage y llena los hidden inputs ---------- */
+function initUTMs() {
+  const utmKeys = ["utm_source", "utm_campaign", "utm_content", "utm_medium", "utm_term"];
+
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  function fillInputs(key, value) {
+    document.querySelectorAll(`input[name="${key}"]`).forEach(input => { input.value = value; });
+  }
+
+  utmKeys.forEach(key => {
+    const value = getQueryParam(key);
+    if (value) { try { localStorage.setItem(key, value); } catch (e) { /* localStorage no disponible */ } }
+    let storedValue;
+    try { storedValue = localStorage.getItem(key); } catch (e) { storedValue = value; }
+    if (storedValue) fillInputs(key, storedValue);
+  });
+
+  // Si el modal de inscripción se abre/re-renderiza después, nos aseguramos de
+  // rellenar los hidden inputs de UTM también en ese momento.
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest("[data-lead]")) return;
+    utmKeys.forEach(key => {
+      let storedValue;
+      try { storedValue = localStorage.getItem(key); } catch (err) { storedValue = null; }
+      if (storedValue) fillInputs(key, storedValue);
+    });
+  });
 }
 
 /* ---------- WhatsApp ---------- */
@@ -135,6 +170,19 @@ function initTabs() {
         });
         panels.forEach(p => p.classList.toggle("active", p.dataset.panel === id));
       });
+    });
+  });
+}
+
+/* ---------- Acordeón "¿Qué vas a lograr?" en las cards ---------- */
+function initProgMore() {
+  document.querySelectorAll(".pc-more-btn").forEach(btn => {
+    const panel = btn.nextElementSibling;
+    if (!panel) return;
+    btn.addEventListener("click", () => {
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", open ? "false" : "true");
+      panel.style.maxHeight = open ? null : panel.scrollHeight + "px";
     });
   });
 }
