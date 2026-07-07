@@ -556,6 +556,10 @@ body.modal-open{overflow:hidden}
 .prog-locked .pl-label{font-size:.66rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 .prog-locked .pl-value{font-size:1.02rem;font-weight:800;line-height:1.25}
 .pay-gift{margin-bottom:18px}
+.step2-head{margin-bottom:18px}
+.step2-head h3{font-size:1.4rem;color:var(--odm-purple);margin-bottom:6px}
+.step2-head p{font-size:.92rem;color:var(--odm-text-soft);line-height:1.5;text-wrap:pretty}
+.pay-note{font-size:.85rem;font-style:italic;color:var(--odm-text-soft);line-height:1.5;margin:-10px 0 18px}
 .pay-gift h4{font-size:1.02rem;color:var(--odm-purple);margin-bottom:5px;line-height:1.25}
 .pay-gift p{font-size:.9rem;color:var(--odm-text-soft);line-height:1.5;text-wrap:pretty}
 .pay-gift b{color:var(--odm-orange-dark)}

@@ -226,6 +226,7 @@ function initLeadModal() {
   if (!backdrop) return;
 
   const form        = backdrop.querySelector(".modal-form");
+  const titleEl     = backdrop.querySelector("#modal-title");
   const subEl       = backdrop.querySelector("[data-modal-sub]");
   const locked      = backdrop.querySelector("[data-prog-locked]");
   const lockedName  = backdrop.querySelector("[data-prog-name]");
@@ -265,10 +266,12 @@ function initLeadModal() {
       locked.hidden = false;
       selectField.style.display = "none";
       lockedName.textContent = program + (level ? " · " + level : "");
-      subEl.innerHTML = `Estás por inscribirte a <b>${program}</b>. Completa tus datos y te guiamos desde aquí.`;
+      titleEl.textContent = "Conoce más sobre este programa";
+      subEl.innerHTML = `Gracias por tu interés en <b>${program}</b>. 100% en línea y con validez oficial RVOE. Completa tus datos para recibir una cotización.`;
     } else {
       locked.hidden = true;
       selectField.style.display = "";
+      titleEl.textContent = "Comienza tu inscripción";
       subEl.textContent = "Déjanos tus datos y te guiamos desde aquí.";
     }
     updatePay();
